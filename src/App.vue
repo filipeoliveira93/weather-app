@@ -1,9 +1,14 @@
 <script setup>
 import geolocation from "/src/components/geolocation.vue";
+import dayForecast from '/src/components/dayForecast.vue';
+
+
 </script>
 
 <template>
 	<geolocation />
+	<dayForecast />
+
 </template>
 
 <style scoped>
