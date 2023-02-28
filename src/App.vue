@@ -1,27 +1,15 @@
-<script setup>
-import geolocation from "/src/components/geolocation.vue";
-import dayForecast from '/src/components/dayForecast.vue';
-
-
+<script>
+import geolocation from '/src/components/geolocationVue.vue'
+export default {
+  components: { geolocation }
+}
 </script>
 
 <template>
-	<geolocation />
-	<dayForecast />
-
+  <div>
+    <p>teste</p>
+    <geolocation />
+  </div>
 </template>
 
-<style scoped>
-.logo {
-	height: 6em;
-	padding: 1.5em;
-	will-change: filterr;
-	transition: filter 300ms;
-}
-.logo:hover {
-	filter: drop-shadow(0 0 2em #646cffaa);
-}r
-.logo.vue:hover {
-	filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style></style>
