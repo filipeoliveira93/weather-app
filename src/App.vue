@@ -1,14 +1,14 @@
 <script>
-import geolocation from '/src/components/geolocationVue.vue'
+import forecastget from '/src/components/forecastGet.vue'
 export default {
-  components: { geolocation }
+  components: { forecastget }
 }
 </script>
 
 <template>
   <div>
-    <p>teste</p>
-    <geolocation />
+    <p>teste2</p>
+    <forecastget />
   </div>
 </template>
 
