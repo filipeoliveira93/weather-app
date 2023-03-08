@@ -1,10 +1,9 @@
 <template>
   <div v-if="dayInfo">
     <p>{{ address }}</p>
-    <p>{{ temperatura }}</p>
-    <p> {{ weatherDescription }}</p>
-    <img :src="weatherIcon2" alt="Weather icon">
-    <!-- <img src="`../assets/icons/clear-day.svg`"> -->
+    <p>{{ dayForecastData.temperatura }}</p>
+    <p> {{ dayForecastData.weatherDescription }}</p>
+    <img :src="dayForecastData.weatherIcon2" alt="Weather icon">
   </div>
 </template>
 
@@ -55,40 +54,53 @@ export default {
   },
 
 
+  // computed: {
+  //   temperatura() { 
+  //     return this.dayInfo ? this.dayInfo.temperature : ''
+  //   },
+  //   weathercode() {
+  //     if (this.dayInfo && weatherIcons[this.dayInfo.weathercode]) {
+  //       return (weatherIcons[this.dayInfo.weathercode][0])
+  //     }
+  //     else {
+  //       return ('')
+  //     }
+
+  //   },
+  //   weatherDescription() {
+  //     if (this.dayInfo && weatherIcons[this.dayInfo.weathercode]) {
+  //       return (weatherIcons[this.dayInfo.weathercode][1])
+  //     }
+  //     else {
+  //       return ('')
+  //     }
+  //   },
+  //   weatherIcon2() {
+  //     if (this.dayInfo && weatherIcons[this.dayInfo.weathercode]) {
+  //       const iconName = weatherIcons[this.dayInfo.weathercode][2];
+  //       const iconPath = `/src/assets/icons/${iconName}.svg`;
+  //       console.log(weatherIcons[this.dayInfo.weathercode])
+  //       console.log(iconPath)
+  //       return (iconPath);
+
+  //     } else {
+  //       return '';
+  //     }
+  //   }
+  // }
   computed: {
-    temperatura() { 
-      return this.dayInfo ? this.dayInfo.temperature : ''
-    },
-    weathercode() {
-      if (this.dayInfo && weatherIcons[this.dayInfo.weathercode]) {
-        return (weatherIcons[this.dayInfo.weathercode][0])
-      }
-      else {
-        return ('')
-      }
+  dayForecastData() {
+    const dayInfo = this.dayInfo;
+    const weatherData = weatherIcons[dayInfo?.weathercode] || [];
 
-    },
-    weatherDescription() {
-      if (this.dayInfo && weatherIcons[this.dayInfo.weathercode]) {
-        return (weatherIcons[this.dayInfo.weathercode][1])
-      }
-      else {
-        return ('')
-      }
-    },
-    weatherIcon2() {
-      if (this.dayInfo && weatherIcons[this.dayInfo.weathercode]) {
-        const iconName = weatherIcons[this.dayInfo.weathercode][2];
-        const iconPath = `/src/assets/icons/${iconName}.svg`;
-        console.log(weatherIcons[this.dayInfo.weathercode])
-        console.log(iconPath)
-        return (iconPath);
-
-      } else {
-        return '';
-      }
-    }
+    return {
+      temperatura: dayInfo?.temperature || '',
+      weathercode: weatherData[0] || '',
+      weatherDescription: weatherData[1] || '',
+      weatherIcon2: dayInfo ? `/src/assets/icons/${weatherData[2]}.svg` : ''
+    };
   }
+}
 }
 
 </script>
