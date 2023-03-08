@@ -56,7 +56,7 @@ export default {
 
 
   computed: {
-    temperatura() {
+    temperatura() { 
       return this.dayInfo ? this.dayInfo.temperature : ''
     },
     weathercode() {
