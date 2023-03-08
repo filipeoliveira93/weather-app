@@ -4,16 +4,11 @@
       <input type="text" v-model="address" placeholder="Maringá, PR" />
       <button @type="submit">pesquisar</button>
     </form>
-    <div v-if="response">
-      <ul>
-        <li v-for="item in time" :key="item.id">{{ key }}{{ item }}</li>
-      </ul>
-    </div>
+    <dayForecast :response="response" :dayInfo="dayInfo" :address="address" />
   </div>
-  <dayForecast :response="response" />
 </template>
 
-<script>
+<script lang="js">
 import axios from 'axios'
 import dayForecast from './dayForecast.vue'
 
@@ -24,7 +19,8 @@ export default {
       lat: '',
       lng: '',
       response: null,
-      time: ''
+      time: '',
+      dayInfo: null
     }
   },
   components: {
@@ -39,18 +35,13 @@ export default {
       this.lat = location.lat
       this.lng = location.lng
       const responseForecast = await axios.get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${this.lat}&longitude=${this.lng}&hourly=temperature_2m,precipitation,weathercode&timezone=America%2FSao_Paulo`
+        `https://api.open-meteo.com/v1/forecast?latitude=${this.lat}&longitude=${this.lng}&hourly=temperature_2m,precipitation,weathercode&timezone=America%2FSao_Paulo&current_weather=true`
       )
 
       this.response = responseForecast
       this.time = responseForecast.data.hourly.time
-      // console.log(this.response.data.results[0].geometry.location)
-      // console.log('teste')
-
-      // console.log(this.response)
-      console.log(this.time)
-
-      // console.log(JSON.stringify(this.response, null, 2))
+      this.dayInfo = responseForecast.data.current_weather
+      console.log(this.response)
     }
   }
 }
