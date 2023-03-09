@@ -14,30 +14,30 @@ const weatherIcons = {
   1: ['🌤️', 'Limpo com nuvens', 'partly-cloudy-day'],
   2: ['⛅️', 'Parcialmente nublado', 'partly-cloudy-day'],
   3: ['☁️', 'Nublado', 'cloudy', 'overcast'],
-  45: ['🌫️', 'Névoa'],
-  48: ['🌫️', 'Névoa'],
-  51: ['🌧️', 'Chuvisco Fraco'],
-  53: ['🌧️', 'Chuvisco Moderado'],
-  55: ['🌧️', 'Chuvisco Intenso'],
-  56: ['🌧️', 'Chuva congelante Fraca'],
-  57: ['🌧️', 'Chuva congelante Intensa'],
-  61: ['🌧️', 'Chuva Fraca'],
-  63: ['🌧️', 'Chuva Moderada'],
-  65: ['🌧️', 'Chuva Forte'],
-  66: ['🌨️', 'Chuva Congelante Fraca'],
-  67: ['🌨️', 'Chuva Congelante Forte'],
-  71: ['❄️', 'Neve Fraca'],
-  73: ['❄️', 'Neve Moderada'],
-  75: ['❄️', 'Neve Forte'],
-  77: ['❄️', 'Granizo'],
-  80: ['🌧️', 'Chuva Fraca'],
-  81: ['🌧️', 'Chuva Moderada'],
-  82: ['🌧️', 'Chuva Forte'],
-  85: ['❄️', 'Neve Fraca'],
-  86: ['❄️', 'Neve Forte'],
-  95: ['🌩️', 'Trovoadas'],
-  96: ['🌩️', 'Trovoadas com granizo Fraco'],
-  99: ['🌩️', 'Trovoadas com granizo Forte']
+  45: ['🌫️', 'Névoa', 'mist'],
+  48: ['🌫️', 'Névoa', 'mist'],
+  51: ['🌧️', 'Chuvisco Fraco', 'partly-cloudy-rain'],
+  53: ['🌧️', 'Chuvisco Moderado', 'partly-cloudy-rain'],
+  55: ['🌧️', 'Chuvisco Intenso', 'partly-cloudy-rain'],
+  56: ['🌧️', 'Chuva congelante Fraca', 'partly-cloudy-rain'],
+  57: ['🌧️', 'Chuva congelante Intensa', 'rain'],
+  61: ['🌧️', 'Chuva Fraca', 'rain'],
+  63: ['🌧️', 'Chuva Moderada', 'rain'],
+  65: ['🌧️', 'Chuva Forte', 'rain'],
+  66: ['🌨️', 'Chuva Congelante Fraca', 'sleet'],
+  67: ['🌨️', 'Chuva Congelante Forte', 'sleet'],
+  71: ['❄️', 'Neve Fraca', 'snow'],
+  73: ['❄️', 'Neve Moderada', 'snow'],
+  75: ['❄️', 'Neve Forte', 'snow'],
+  77: ['❄️', 'Granizo', 'hail'],
+  80: ['🌧️', 'Chuva Fraca', 'rain'],
+  81: ['🌧️', 'Chuva Moderada', 'rain'],
+  82: ['🌧️', 'Chuva Forte', 'thunderstorms-day-rain'],
+  85: ['❄️', 'Neve Fraca', 'snow'],
+  86: ['❄️', 'Neve Forte', 'snow'],
+  95: ['🌩️', 'Trovoadas', 'thunderstorms-rain'],
+  96: ['🌩️', 'Trovoadas com granizo Fraco', 'thunderstorms-rain'],
+  99: ['🌩️', 'Trovoadas com granizo Forte', 'thunderstorms-rain']
 };
 export default {
   name: 'dayForecast',
@@ -89,18 +89,18 @@ export default {
   //   }
   // }
   computed: {
-  dayForecastData() {
-    const dayInfo = this.dayInfo;
-    const weatherData = weatherIcons[dayInfo?.weathercode] || [];
+    dayForecastData() {
+      const dayInfo = this.dayInfo;
+      const weatherData = weatherIcons[dayInfo?.weathercode] || [];
 
-    return {
-      temperatura: dayInfo?.temperature || '',
-      weathercode: weatherData[0] || '',
-      weatherDescription: weatherData[1] || '',
-      weatherIcon2: dayInfo ? `/src/assets/icons/${weatherData[2]}.svg` : ''
-    };
+      return {
+        temperatura: dayInfo?.temperature || '',
+        weathercode: weatherData[0] || '',
+        weatherDescription: weatherData[1] || '',
+        weatherIcon2: dayInfo ? `/src/assets/icons/${weatherData[2]}.svg` : ''
+      };
+    }
   }
-}
 }
 
 </script>
