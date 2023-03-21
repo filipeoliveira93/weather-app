@@ -1,3 +1,4 @@
+
 <template>
   <div v-if="dayInfo">
     <p>{{ address }}</p>
@@ -8,7 +9,6 @@
 </template>
 
 <script>
-
 const weatherIcons = {
   0: ['☀️', 'Céu limpo', 'clear-day'],
   1: ['🌤️', 'Limpo com nuvens', 'partly-cloudy-day'],
@@ -92,7 +92,6 @@ export default {
     dayForecastData() {
       const dayInfo = this.dayInfo;
       const weatherData = weatherIcons[dayInfo?.weathercode] || [];
-
       return {
         temperatura: dayInfo?.temperature || '',
         weathercode: weatherData[0] || '',
