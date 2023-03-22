@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script lang="js">
+<script  lang="js">
 import axios from 'axios'
 import dayForecast from './dayForecast.vue'
 import dailyForecast from './dailyForecast.vue'

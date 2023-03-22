@@ -2,13 +2,17 @@
 <template>
   <div v-if="dayInfo">
     <p>{{ address }}</p>
-    <p>{{ dayForecastData.temperatura }}</p>
+    <p>{{ dayForecastData.temperatura }} </p>
     <p> {{ dayForecastData.weatherDescription }}</p>
-    <img :src="dayForecastData.weatherIcon2" alt="Weather icon">
+    <!-- <img :src="dayForecastData.weatherIcon2" alt="Weather icon"> -->
+    <!-- <iconsComponent :weathercode="dayInfo.weathercode" /> -->
+    <iconsComponent :weathercode="weathercode" />
   </div>
 </template>
 
-<script>
+<script >
+import iconsComponent from './iconsComponent.vue';
+
 const weatherIcons = {
   0: ['☀️', 'Céu limpo', 'clear-day'],
   1: ['🌤️', 'Limpo com nuvens', 'partly-cloudy-day'],
@@ -40,6 +44,11 @@ const weatherIcons = {
   99: ['🌩️', 'Trovoadas com granizo Forte', 'thunderstorms-rain']
 };
 export default {
+
+  components: {
+    iconsComponent
+  },
+
   name: 'dayForecast',
   props: {
     dayInfo: {
@@ -52,6 +61,13 @@ export default {
     }
 
   },
+
+  data() {
+    return {
+
+    };
+  },
+
 
 
   // computed: {
@@ -89,6 +105,13 @@ export default {
   //   }
   // }
   computed: {
+    weathercode() {
+      const dayInfo = this.dayInfo;
+      console.log('eu sou o' + dayInfo)
+      console.log(dayInfo.weathercode)
+      return dayInfo.weathercode
+    },
+
     dayForecastData() {
       const dayInfo = this.dayInfo;
       const weatherData = weatherIcons[dayInfo?.weathercode] || [];
@@ -96,7 +119,7 @@ export default {
         temperatura: dayInfo?.temperature || '',
         weathercode: weatherData[0] || '',
         weatherDescription: weatherData[1] || '',
-        weatherIcon2: dayInfo ? `/src/assets/icons/${weatherData[2]}.svg` : ''
+        // weatherIcon2: dayInfo ? `/src/assets/icons/${weatherData[2]}.svg` : ''
       };
     }
   }
